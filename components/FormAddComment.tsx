@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { fetchPosts, sendPost } from '../helpers/api';
+import { fetchPosts, sendComment } from '../helpers/api';
 import { setPosts } from '../store/posts';
 import FormButton from './Button';
-import FormInput from './FormInput';
 import FormTextarea from './FormTextarea';
 
 const Form = styled.form`
@@ -13,44 +12,38 @@ const Form = styled.form`
   padding: 0 0 1rem;
 `;
 
-const FormAddPost = (): JSX.Element => {
-  const [postTitle, setPostTitle] = useState('');
-  const [postBody, setPostBody] = useState('');
+interface Props {
+  postId: number;
+}
+
+const FormAddComment = ({ postId }: Props): JSX.Element => {
+  const [commentBody, setCommentBody] = useState('');
   const dispatch = useDispatch();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!postTitle.trim() && !postBody.trim()) {
+    if (!commentBody.trim()) {
       return;
     }
 
-    sendPost(postTitle, postBody)
+    sendComment(postId, commentBody)
       .then(() => fetchPosts())
       .then((posts: Post[]) => dispatch(setPosts(posts)))
       .catch(err => console.error(err))
       .finally(() => {
-        setPostTitle('');
-        setPostBody('');
+        setCommentBody('');
       });
   }
 
   return (
     <Form onSubmit={handleSubmit}>
-      <FormInput
-        type="text"
-        name="title"
-        id="postTitle"
-        placeholder="Post Title"
-        value={postTitle}
-        onChange={setPostTitle}
-      />
       <FormTextarea
         name="body"
         id="postBody"
         placeholder="Your Post"
-        value={postBody}
-        onChange={setPostBody}
+        value={commentBody}
+        onChange={setCommentBody}
       />      
       <FormButton 
         type="submit"
@@ -62,4 +55,4 @@ const FormAddPost = (): JSX.Element => {
   );
 }
 
-export default FormAddPost;
+export default FormAddComment;

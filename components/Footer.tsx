@@ -3,8 +3,10 @@ import styled from 'styled-components';
 
 const Container = styled.footer`
   display: flex;
-  flex-direction: column;
-  min-height: 18rem;
+  align-items: center;
+  justify-content: center;
+  min-height: 12rem;
+  padding: 0 2rem;
   background-color: #000;
   color: #fff;
 `;

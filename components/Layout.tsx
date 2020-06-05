@@ -5,9 +5,9 @@ import Footer from './Footer';
 import Header from './Header';
 
 
-const Main = styled.header`
+const Main = styled.main`
   max-width: 1400px;
-  margin: 0 auto;
+  margin: 0 auto 2rem;
   padding: 0 2rem;
 `;
 

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const Field = styled.div`
   display: flex;
+  margin-bottom: 1rem;
 `;
 
 const Label = styled.label`

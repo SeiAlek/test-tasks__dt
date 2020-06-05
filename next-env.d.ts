@@ -14,10 +14,6 @@ interface Comment {
   body: string;
 }
 
-interface StatelessPage<P> extends React.SFC<P> {
-  getInitialProps?: (ctx: NextPageContext) => Promise<P>
-}
-
 type ButtonType = 'button' | 'submit' | 'reset';
 
 type InputType = 'text' | 'number' | 'email' | 'tel' | 'url' | 'password';

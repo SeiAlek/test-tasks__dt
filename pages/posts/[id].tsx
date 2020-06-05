@@ -23,9 +23,9 @@ interface Context extends NextPageContext {
 }
 
 StaticPropsDetail.getInitialProps = async (context: Context) => {
-  const response = await fetchPostWithComments(Number(context.query.id));
+  const post = await fetchPostWithComments(Number(context.query.id));
 
-  return { post: response.data };
+  return { post: post };
 };
 
 export default StaticPropsDetail;

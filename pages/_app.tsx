@@ -1,4 +1,3 @@
-import { AxiosResponse } from 'axios';
 import { AppProps } from 'next/app';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -21,7 +20,7 @@ const WrappedApp = ({ Component, pageProps }: AppProps) => {
 
   useEffect(() => {
     fetchPosts()
-      .then((response: AxiosResponse<Post[]>) => dispatch(setPosts(response.data)));
+      .then((posts: Post[]) => dispatch(setPosts(posts)));
   }, [dispatch]);
 
   return (
