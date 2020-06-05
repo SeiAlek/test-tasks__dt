@@ -1,5 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import Nav from './Nav';
 
 const Container = styled.header`
   display: flex;
@@ -20,13 +21,14 @@ const SubTitle = styled.h2`
   text-align: center;
 `;
 
-const Header = () => {
+const Header = (): JSX.Element => {
   return (
     <Container>
       <Title>Blog</Title>
       <SubTitle>Real stories &amp; opinions about running an independent membership business.</SubTitle>
+      <Nav />
     </Container>
-  );
-};
+  )
+}
 
 export default Header;

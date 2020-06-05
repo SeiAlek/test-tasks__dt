@@ -2,7 +2,7 @@ import React, { useState, FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { AxiosResponse } from 'axios';
-import { sendPost } from '../helpers/api';
+import { sendPost, fetchPosts } from '../helpers/api';
 import FormInput from './FormInput';
 import FormTextarea from './FormTextarea';
 import { setPosts } from '../store/posts';
@@ -27,11 +27,13 @@ const FormAddPost = (): JSX.Element => {
     }
 
     sendPost(postTitle, postBody)
+      .then(() => fetchPosts())
       .then((response: AxiosResponse<Post[]>) => dispatch(setPosts(response.data)))
       .catch(err => console.error(err))
-
-    setPostTitle('');
-    setPostBody('');
+      .finally(() => {
+        setPostTitle('');
+        setPostBody('');
+      });
   }
 
   return (

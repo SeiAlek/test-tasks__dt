@@ -1,23 +1,15 @@
-import { createStore, combineReducers, applyMiddleware, AnyAction } from 'redux';
+import { createWrapper, HYDRATE, MakeStore } from 'next-redux-wrapper';
+import { AnyAction, applyMiddleware, combineReducers, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createSelector } from 'reselect';
-import thunkMiddleware from 'redux-thunk'
-import { MakeStore, createWrapper, Context, HYDRATE } from 'next-redux-wrapper';
 import postReducer from './posts';
-
-const bindMiddleware = (middleware) => {
-  if (process.env.NODE_ENV !== 'production') {
-    const { composeWithDevTools } = require('redux-devtools-extension')
-    return composeWithDevTools(applyMiddleware(...middleware))
-  }
-  return applyMiddleware(...middleware)
-}
+import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
   posts: postReducer,
 })
 
-export const getPosts = (state: RootState) => state.posts;
+export const getPosts = (state: RootState): Post[] => state.posts;
 export const getNewestPosts = createSelector(
   getPosts,
   (posts: Post[]) => [...posts].sort((a, b) => b.id - a.id).slice(0, 12),
@@ -26,7 +18,7 @@ export const getNewestPosts = createSelector(
 export type RootState = ReturnType<typeof rootReducer>;
 export type PossibleAction = AnyAction;
 
-const reducer = (state: RootState, action: PossibleAction) => {
+const reducer = (state: RootState, action: any) => {
   if (action.type === HYDRATE) {
     const nextState = {
       ...state,
@@ -34,16 +26,15 @@ const reducer = (state: RootState, action: PossibleAction) => {
     }
     if (state.posts) {
       nextState.posts = state.posts;
-    
     }
     return nextState;
   } else {
-    return rootReducer(state, action)
+    return rootReducer(state, action);
   }
 }
 
-const initStore: MakeStore<RootState> = () => {
-  return createStore(reducer, bindMiddleware([thunkMiddleware]))
-}
+const initStore: MakeStore<RootState> = () => (
+  createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
+);
 
-export const wrapper = createWrapper<RootState>(initStore)
+export const wrapper = createWrapper<RootState>(initStore);

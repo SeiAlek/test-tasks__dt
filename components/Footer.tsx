@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.footer`
@@ -9,10 +9,10 @@ const Container = styled.footer`
   color: #fff;
 `;
 
-const Footer = () => {
+const Footer = (): JSX.Element => {
   return (
     <Container>
-      <div>The Ghost Blog © 2020</div>
+      <h2>The Ghost Blog © 2020</h2>
     </Container>
   );
 };

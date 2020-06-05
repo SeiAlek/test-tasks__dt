@@ -8,8 +8,8 @@ const Input = styled.input`
   padding: 0.5rem 1rem;
 `;
 
-type Props = {
-  type: string;
+interface Props {
+  type: InputType;
   name: string;
   id: string;
   placeholder?: string;
@@ -17,14 +17,14 @@ type Props = {
   onChange: (value: string) => void;
 }
 
-const FormInput: React.FC<Props> = ({ 
+const FormInput = ({ 
   type = 'text',
   name,
   id,
   placeholder,
   value,
   onChange,
- }) => {
+ }: Props): JSX.Element => {
 
   return (
     <FormFieldWrapper id={id}>

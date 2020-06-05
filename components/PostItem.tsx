@@ -1,11 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 
-type Props = {
+interface Props {
   post: Post;
 }
 
-const PostItem: React.FC<Props> = ({ post }) => (
+const PostItem = ({ post }: Props): JSX.Element => (
   <Link href="/posts/[id]" as={`/posts/${post.id}`}>
     <a>
       {post.id}: {post.title}

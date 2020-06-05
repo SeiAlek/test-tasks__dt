@@ -1,6 +1,6 @@
 import React from 'react';
 
-type Props = {
+interface Props {
   post: Post;
 }
 
@@ -10,9 +10,11 @@ const PostDetail = ({ post }: Props): JSX.Element => {
   return (
     <article>
       <h1>{title}</h1>
-      <section>
-        {body}
-      </section>
+      {body && (
+        <section>
+          {body}
+        </section>
+      )}
       {comments && (
         <ul>
           {comments.map(({ id, body}) => (
@@ -23,7 +25,7 @@ const PostDetail = ({ post }: Props): JSX.Element => {
         </ul>
       )}
     </article>
-  );
-};
+  )
+}
 
 export default PostDetail;

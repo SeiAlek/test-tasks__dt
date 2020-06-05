@@ -1,11 +1,17 @@
-import React from 'react';
 import Head from 'next/head';
-
-import Header from './Header';
+import React from 'react';
+import styled from 'styled-components';
 import Footer from './Footer';
-import Nav from './Nav';
+import Header from './Header';
 
-type Props = {
+
+const Main = styled.header`
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+`;
+
+interface Props {
   title?: string;
   children: JSX.Element;
 }
@@ -23,10 +29,9 @@ const Layout = ({
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"></link>
       </Head>
       <Header />
-      <Nav />
-      <main>
+      <Main>
         {children}
-      </main>
+      </Main>
       <Footer />
     </>
   );

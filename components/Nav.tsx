@@ -1,5 +1,5 @@
-import React from 'react';
 import Link from 'next/link';
+import React from 'react';
 import styled from 'styled-components';
 
 const List = styled.ul`
@@ -11,28 +11,39 @@ const Item = styled.li`
   list-style: none;
 `;
 
+const A = styled.a.attrs(() => ({ tabIndex: 0 }))`
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+  cursor: pointer;
+  
+  &:hover {
+    color: #fff000;
+  }
+`;
+
 const Nav = (): JSX.Element => (
   <nav>
     <List>
       <Item>
         <Link href="/">
-          <a>
+          <A>
             HomePage
-          </a>
+          </A>
         </Link>
       </Item>
       <Item>
         <Link href="/posts">
-          <a>
+          <A>
             Posts
-          </a>
+          </A>
         </Link>
       </Item>
       <Item>
         <Link href="/add-post">
-          <a>
+          <A>
             Add Posts
-          </a>
+          </A>
         </Link>
       </Item>
     </List>

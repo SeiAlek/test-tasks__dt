@@ -9,8 +9,10 @@ const WithStaticProps = (): JSX.Element => {
 
   return (
     <Layout title="Posts List">
-      <h1>Posts</h1>
-      <PostList posts={posts} />
+      <>
+        <h1>Posts</h1>
+        <PostList posts={posts} />
+      </>
     </Layout>
   );
 };

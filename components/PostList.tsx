@@ -1,11 +1,11 @@
 import React from 'react';
 import PostItem from './PostItem';
 
-type Props = {
-  posts: Post[]
+interface Props {
+  posts: Post[];
 }
 
-const PostList: React.FC<Props> = ({ posts }) => (
+const PostList = ({ posts }: Props): JSX.Element => (
   <ul>
     {posts.map((post) => (
       <li key={post.id}>

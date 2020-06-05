@@ -8,7 +8,7 @@ const Textarea = styled.textarea`
   padding: 1rem;
 `;
 
-type Props = {
+interface Props {
   name: string;
   id: string;
   placeholder?: string;
@@ -16,13 +16,13 @@ type Props = {
   onChange: (value: string) => void;
 }
 
-const FormTextarea: React.FC<Props> = ({ 
+const FormTextarea = ({ 
   name,
   id,
   placeholder,
   value,
   onChange,
- }) => {
+ }: Props): JSX.Element => {
 
   return (
     <FormFieldWrapper id={id}>

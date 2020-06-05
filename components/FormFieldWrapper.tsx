@@ -9,14 +9,15 @@ const Label = styled.label`
   width: 100%;
 `;
 
-type Props = {
-  id: string
+interface Props {
+  children: JSX.Element;
+  id: string;
 }
 
-const FormFieldWrapper: React.FC<Props> = ({ 
+const FormFieldWrapper = ({ 
   children,
   id,
- }) => {
+ }: Props): JSX.Element => {
 
   return (
     <Field>

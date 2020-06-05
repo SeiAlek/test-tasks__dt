@@ -19,3 +19,5 @@ interface StatelessPage<P> extends React.SFC<P> {
 }
 
 type ButtonType = 'button' | 'submit' | 'reset';
+
+type InputType = 'text' | 'number' | 'email' | 'tel' | 'url' | 'password';
