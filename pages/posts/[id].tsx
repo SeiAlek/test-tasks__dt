@@ -1,3 +1,4 @@
+import React from 'react';
 import Layout from '../../components/Layout';
 import PostDetail from '../../components/PostDetail';
 import { fetchPostWithComments } from '../../helpers/api';
@@ -7,7 +8,7 @@ interface Props {
   post: Post;
 }
 
-const StaticPropsDetail: StatelessPage<Props> = ({ post }) => {
+const StaticPropsDetail = ({ post }: Props): JSX.Element => {
   const { title } = post;
 
   return (

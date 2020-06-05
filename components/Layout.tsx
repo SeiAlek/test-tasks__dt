@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Head from 'next/head';
 
 import Header from './Header';
@@ -6,14 +6,14 @@ import Footer from './Footer';
 import Nav from './Nav';
 
 type Props = {
-  title?: string
+  title?: string;
+  children: JSX.Element;
 }
 
-const Layout: React.FC<Props> = ({ 
+const Layout = ({
   children,
   title = 'Blog',
- }) => {
-
+}: Props): JSX.Element => {
   return (
     <>
       <Head>
@@ -29,7 +29,7 @@ const Layout: React.FC<Props> = ({
       </main>
       <Footer />
     </>
-  )
+  );
 }
 
 export default Layout;

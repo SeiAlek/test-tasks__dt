@@ -11,7 +11,7 @@ const Item = styled.li`
   list-style: none;
 `;
 
-const Nav: React.FC<{}> = () => (
+const Nav = (): JSX.Element => (
   <nav>
     <List>
       <Item>

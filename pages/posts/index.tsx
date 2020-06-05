@@ -1,9 +1,10 @@
+import React from 'react';
 import { useSelector } from 'react-redux';
 import Layout from '../../components/Layout';
 import PostList from '../../components/PostList';
 import { getPosts } from '../../store';
 
-const WithStaticProps = () => {
+const WithStaticProps = (): JSX.Element => {
   const posts = useSelector(getPosts);
 
   return (

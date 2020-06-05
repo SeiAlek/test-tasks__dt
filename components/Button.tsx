@@ -5,7 +5,7 @@ const Button = styled.button.attrs(() => ({ tabIndex: 0 }))`
   width: 100%;
   box-sizing: border-box;
   padding: 0.5rem 1rem;
-  text-transborm: capitalize;
+  text-transform: capitalize;
   background-color: transparent;
   border: 1px solid #000;
   transition: all 0.3s;
@@ -18,19 +18,19 @@ const Button = styled.button.attrs(() => ({ tabIndex: 0 }))`
   }
 `;
 
-type Props = {
-  type: ButtonType;
+interface Props {
+  type?: ButtonType;
   name: string;
   id: string;
   onClick: (e: React.FormEvent) => void;
 }
 
-const FormButton: React.FC<Props> = ({ 
-  type = 'button',
+const FormButton = ({
+  type = "button",
   name,
   id,
   onClick,
- }) => {
+}: Props): JSX.Element => {
 
   return (
     <Button

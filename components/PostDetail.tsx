@@ -4,7 +4,7 @@ type Props = {
   post: Post;
 }
 
-const PostDetail: React.FC<Props> = ({ post }) => {
+const PostDetail = ({ post }: Props): JSX.Element => {
   const { title, body, comments } = post;
 
   return (

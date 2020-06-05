@@ -14,7 +14,7 @@ interface Comment {
   body: string;
 }
 
-interface StatelessPage<P = {}> extends React.SFC<P> {
+interface StatelessPage<P> extends React.SFC<P> {
   getInitialProps?: (ctx: NextPageContext) => Promise<P>
 }
 
