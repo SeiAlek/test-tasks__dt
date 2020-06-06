@@ -58,6 +58,7 @@ const FormAddPost = (): JSX.Element => {
         type="submit"
         name="Send post"
         id="send-post"
+        disabled={!postTitle && !postBody}
         onClick={handleSubmit}
       />
     </Form>

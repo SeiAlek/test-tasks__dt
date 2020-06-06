@@ -16,12 +16,26 @@ const Button = styled.button.attrs(() => ({ tabIndex: 0 }))`
     background-color: #000;
     box-shadow: 0 3px 13px rgba(23, 32, 49, .26);
   }
+
+  &[disabled] {
+    color: rgba(16, 16, 16, 0.3);
+    border: 1px solid rgba(16, 16, 16, 0.3);
+
+    &:hover {
+      color: rgba(16, 16, 16, 0.3);
+      border: 1px solid rgba(16, 16, 16, 0.3);
+      background-color: transparent;
+      box-shadow: none;
+      cursor: default;
+    }
+  }
 `;
 
 interface Props {
   type?: ButtonType;
   name: string;
   id: string;
+  disabled?: boolean;
   onClick: (e: React.FormEvent) => void;
 }
 
@@ -29,6 +43,7 @@ const FormButton = ({
   type = "button",
   name,
   id,
+  disabled,
   onClick,
 }: Props): JSX.Element => {
 
@@ -36,6 +51,7 @@ const FormButton = ({
     <Button
       type={type}
       id={id}
+      disabled={disabled}
       onClick={onClick}
     >
       {name}

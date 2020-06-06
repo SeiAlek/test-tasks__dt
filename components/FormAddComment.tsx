@@ -51,6 +51,7 @@ const FormAddComment = ({ postId }: Props): JSX.Element => {
         type="submit"
         name="Send comment"
         id="send-comment"
+        disabled={!commentBody}
         onClick={handleSubmit}
       />
     </Form>
