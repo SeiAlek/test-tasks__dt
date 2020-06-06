@@ -12,6 +12,8 @@ const Item = styled.li`
 `;
 
 const A = styled.a.attrs(() => ({ tabIndex: 0 }))`
+  display: inline-block;
+  padding: 0.5rem 1rem;
   color: #fff;
   text-decoration: none;
   transition: color 0.3s;

@@ -1,7 +1,8 @@
+import Router from 'next/router';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { fetchPosts, sendPost } from '../helpers/api';
+import * as api from '../helpers/api';
 import { setPosts } from '../store/posts';
 import FormButton from './Button';
 import FormInput from './FormInput';
@@ -25,14 +26,15 @@ const FormAddPost = (): JSX.Element => {
       return;
     }
 
-    sendPost(postTitle, postBody)
-      .then(() => fetchPosts())
+    api.sendPost(postTitle, postBody)
+      .then(() => api.fetchPosts())
       .then((posts: Post[]) => dispatch(setPosts(posts)))
       .catch(err => console.error(err))
-      .finally(() => {
+      .then(() => {
         setPostTitle('');
         setPostBody('');
-      });
+      })
+      .finally(() => Router.push('/posts'));
   }
 
   return (

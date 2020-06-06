@@ -1,3 +1,4 @@
+import Router from 'next/router';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
@@ -5,7 +6,6 @@ import * as api from '../helpers/api';
 import { setPosts } from '../store/posts';
 import FormButton from './Button';
 import FormTextarea from './FormTextarea';
-import Router from 'next/router'
 
 const Form = styled.form`
   max-width: 20rem;
@@ -42,15 +42,15 @@ const FormAddComment = ({ postId }: Props): JSX.Element => {
     <Form onSubmit={handleSubmit}>
       <FormTextarea
         name="body"
-        id="postBody"
-        placeholder="Your Post"
+        id="commentBody"
+        placeholder="Comment it there..."
         value={commentBody}
         onChange={setCommentBody}
       />      
       <FormButton 
         type="submit"
-        name="Send post"
-        id="send-post"
+        name="Send comment"
+        id="send-comment"
         onClick={handleSubmit}
       />
     </Form>

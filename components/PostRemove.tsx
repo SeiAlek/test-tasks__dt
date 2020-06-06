@@ -1,9 +1,9 @@
+import Router from 'next/router';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import * as api from '../helpers/api';
 import * as store from '../store/posts';
-import Router from 'next/router'
 
 const Delete = styled.button.attrs(() => ({ tabIndex: 0 }))`
   position: absolute;
