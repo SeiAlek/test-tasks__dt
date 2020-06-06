@@ -2,10 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import Layout from '../../components/Layout';
 import PostList from '../../components/PostList';
-import { getPostsByDate } from '../../store';
+import { getPostsSortByDate } from '../../store';
 
 const WithStaticProps = (): JSX.Element => {
-  const posts = useSelector(getPostsByDate);
+  const posts = useSelector(getPostsSortByDate);
 
   return (
     <Layout title="Posts List">

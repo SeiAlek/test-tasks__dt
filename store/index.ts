@@ -10,12 +10,12 @@ const rootReducer = combineReducers({
 })
 
 export const getPosts = (state: RootState): Post[] => state.posts;
-export const getPostsByDate = createSelector(
+export const getPostsSortByDate = createSelector(
   getPosts,
   (posts: Post[]) => [...posts].sort((a, b) => b.id - a.id),
 );
 export const getLastPosts = createSelector(
-  getPostsByDate,
+  getPostsSortByDate,
   (posts: Post[]) => [...posts].slice(0, 16),
 );
 
