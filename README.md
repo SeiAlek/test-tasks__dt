@@ -10,6 +10,13 @@
  4. Run `npm run dev` 
  5. Open in your Browser `http://localhost:3000`
 
+##Technologies used in the work
+
+- React + Next.js (SSR)
+- Redux
+- TypeScript
+- Styled Components
+- Axios
 
 
 ## The Task Description
