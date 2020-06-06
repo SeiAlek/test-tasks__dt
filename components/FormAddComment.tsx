@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import * as api from '../helpers/api';
-import { setPosts } from '../store/posts';
+import * as store from '../store/posts';
 import FormButton from './Button';
 import FormTextarea from './FormTextarea';
 
@@ -30,11 +30,11 @@ const FormAddComment = ({ postId }: Props): JSX.Element => {
 
     api.sendComment(postId, commentBody)
       .then(() => api.fetchPosts())
-      .then((posts: Post[]) => dispatch(setPosts(posts)))
+      .then((posts: Post[]) => dispatch(store.setPosts(posts)))
       .catch(err => console.error(err))
       .finally(() => {
         setCommentBody('');
-        Router.reload();
+        Router.push(`/posts/${postId}`)
       });
   }
 
