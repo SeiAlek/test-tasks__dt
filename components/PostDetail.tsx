@@ -1,6 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import FormAddComment from './FormAddComment';
+import PostRemove from './PostRemove';
+
+const Container = styled.article`
+  position: relative;
+`;
 
 const Text = styled.section`
   padding: 2rem 0 4rem;
@@ -14,7 +19,8 @@ const PostDetail = ({ post }: Props): JSX.Element => {
   const { id, title, body, comments } = post;
 
   return (
-    <article>
+    <Container>
+      <PostRemove postId={post.id} buttonText="Remove Post" />
       <h1>{title}</h1>
       {body && (
         <Text>
@@ -34,7 +40,7 @@ const PostDetail = ({ post }: Props): JSX.Element => {
           </ul>
         </>
       )}
-    </article>
+    </Container>
   )
 }
 

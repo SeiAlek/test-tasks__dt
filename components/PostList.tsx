@@ -1,6 +1,8 @@
 import React from 'react';
-import PostItem from './PostItem';
 import styled from 'styled-components';
+import * as api from '../helpers/api';
+import PostItem from './PostItem';
+import PostRemove from './PostRemove';
 
 const Container = styled.ul`
   display: grid;
@@ -11,6 +13,7 @@ const Container = styled.ul`
 `;
 
 const Item = styled.li`
+  position: relative;
   list-style: none;
   background-color: #fff;
   box-shadow: 0 3px 13px rgba(23, 32, 49, .26);
@@ -26,6 +29,7 @@ const PostList = ({ posts }: Props): JSX.Element => (
   <Container>
     {posts.map((post) => (
       <Item key={post.id}>
+        <PostRemove postId={post.id} buttonText="x" />
         <PostItem post={post} />
       </Item>
     ))}

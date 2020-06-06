@@ -1,13 +1,11 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-const API_URL = 'https://simple-blog-api.crew.red';
+const API_URL = 'https://simple-blog-api.crew.red/';
 
-type RequestConfigGET = AxiosRequestConfig & {
-  redirect?: 'follow';
-}
+axios.defaults.baseURL = API_URL;
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-type RequestConfigPOST = AxiosRequestConfig & {
-  headers: Headers,
+type RequestConfig = AxiosRequestConfig & {
   title?: string,
   body?: string,
   postId?: number,
@@ -15,16 +13,13 @@ type RequestConfigPOST = AxiosRequestConfig & {
 };
 
 export const fetchPosts = async (): Promise<Post[]> => {
-  const requestConfig: RequestConfigGET = {
+  const requestConfig: RequestConfig = {
     method: 'GET',
     redirect: 'follow',
   };
 
   try {
-    const response = await axios.get(
-      `${API_URL}/posts`, 
-      requestConfig,
-      );
+    const response = await axios.get('posts', requestConfig);
     const { data } = response;
 
     return data;
@@ -34,16 +29,13 @@ export const fetchPosts = async (): Promise<Post[]> => {
 }
 
 export const fetchPostWithComments = async (id: number): Promise<Post> => {
-  const requestConfig: RequestConfigGET = {
+  const requestConfig: RequestConfig = {
     method: 'GET',
     redirect: 'follow',
   };
 
   try {
-    const response = await axios.get(
-      `${API_URL}/posts/${id}?_embed=comments`, 
-      requestConfig,
-    );
+    const response = await axios.get(`posts/${id}?_embed=comments`, requestConfig);
     const { data } = response;
 
     return data;
@@ -53,38 +45,43 @@ export const fetchPostWithComments = async (id: number): Promise<Post> => {
 }
 
 export const sendPost = async (postTitle: string, postBody: string): Promise<Post[]> => {
-  const myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-
-  const requestConfig: RequestConfigPOST = {
+  const requestConfig: RequestConfig = {
     method: 'POST',
-    headers: myHeaders,
     title: postTitle,
     body: postBody,
     redirect: 'follow',
   };
 
   try {
-    return axios.post(`${API_URL}/posts`, requestConfig);
+    return axios.post('posts', requestConfig);
+  } catch(err) {
+    throw `Something went wrong: ${err}`;
+  }
+}
+
+export const removePost = async (postId: number): Promise<Post[]> => {
+  const requestConfig: RequestConfig = {
+    method: 'DELETE',
+    redirect: 'follow',
+  }
+
+  try {
+    return axios.delete(`posts/${postId}`, requestConfig);
   } catch(err) {
     throw `Something went wrong: ${err}`;
   }
 }
 
 export const sendComment = async (postId: number, commentBody: string): Promise<Post[]> => {
-  const myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-
-  const requestConfig: RequestConfigPOST = {
+  const requestConfig: RequestConfig = {
     method: 'POST',
-    headers: myHeaders,
     postId: postId,
     body: commentBody,
     redirect: 'follow',
   };
 
   try {
-    return axios.post(`${API_URL}/comments`, requestConfig);
+    return axios.post('comments', requestConfig);
   } catch(err) {
     throw `Something went wrong: ${err}`;
   }

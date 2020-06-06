@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { fetchPosts, sendComment } from '../helpers/api';
+import * as api from '../helpers/api';
 import { setPosts } from '../store/posts';
 import FormButton from './Button';
 import FormTextarea from './FormTextarea';
+import Router from 'next/router'
 
 const Form = styled.form`
   max-width: 20rem;
@@ -27,12 +28,13 @@ const FormAddComment = ({ postId }: Props): JSX.Element => {
       return;
     }
 
-    sendComment(postId, commentBody)
-      .then(() => fetchPosts())
+    api.sendComment(postId, commentBody)
+      .then(() => api.fetchPosts())
       .then((posts: Post[]) => dispatch(setPosts(posts)))
       .catch(err => console.error(err))
       .finally(() => {
         setCommentBody('');
+        Router.reload();
       });
   }
 

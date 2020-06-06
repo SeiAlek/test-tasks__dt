@@ -25,7 +25,7 @@ interface Props {
 }
 
 const PostItem = ({ post }: Props): JSX.Element => {
-  const { id, title, body } = post;
+  const { id, title } = post;
 
   return (
     <Container>
